@@ -1,8 +1,32 @@
-
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@400&display=swap');
 
-*, #App {
-  margin: 0 !important;
-  padding: 0 !important;
+* {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+body {
+  background-color: #FFF2D7;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: var(--font-family);
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.scroll-container {
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+
+section {
+  height: 100vh;
+  width: 100vw;
+  scroll-snap-align: center;
 }

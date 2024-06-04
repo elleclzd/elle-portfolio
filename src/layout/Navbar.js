@@ -12,7 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import pageIcon from '../assets/elle-doodle.PNG'
 import { Avatar } from '@mui/material';
 import ThemeContext from '../context/ThemeContext';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const pages = ['Home', 'Services', 'Contact Me!'];
@@ -21,7 +21,7 @@ const pages = ['Home', 'Services', 'Contact Me!'];
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [activePage, setActivePage] = React.useState('Home');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -41,10 +41,16 @@ function ResponsiveAppBar() {
   return (
     <ThemeContext.Consumer>
       {(theme) => (
-        <AppBar position="static" style={{ backgroundColor: theme.primaryColor, padding: '10px 0px' }}>
+        <AppBar position="static" sx={{
+          backgroundColor: 'rgba(255, 255, 255, 0.2)', // More transparent
+          backdropFilter: 'blur(10px)', // Blur effect
+          WebkitBackdropFilter: 'blur(10px)', // For Safari support
+          padding: '10px 0px',
+          boxShadow: 'none'
+        }}>
           <Container maxWidth="xl">
             <Toolbar disableGutters>
-              <Avatar sx={{ width: 56, height: 56, bgcolor: '#FFFF' }} src={pageIcon} alt="Elle Doodle Icon" href='/' style={{ display: { xs: 'none', md: 'flex' }, marginRight: 1 }} />
+              <Avatar sx={{ width: 56, height: 56, }} src={pageIcon} alt="Elle Doodle Icon" href='/' style={{ display: { xs: 'none', md: 'flex' }, marginRight: 1 }} />
 
               <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                 <IconButton
@@ -77,7 +83,7 @@ function ResponsiveAppBar() {
                 >
                   {pages.map((page) => (
                     <MenuItem key={page} onClick={() => handlePageClick(page)} selected={activePage === page}>
-                      <Typography textAlign="center">{page}</Typography>
+                      <Typography textAlign="center" sx={{ color: theme.primaryColor }}>{page}</Typography>
                     </MenuItem>
                   ))}
                 </Menu>
@@ -86,31 +92,32 @@ function ResponsiveAppBar() {
               <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: { xs: 'none', md: 'right' } }}>
                 {pages.map((page) => (
                   <Button
-                  key={page}
-                  onClick={() => handlePageClick(page)}
-                  sx={{
-                    my: 2,
-                    color: activePage === page ? 'white' : 'inherit',
-                    display: 'block',
-                    textDecoration: 'none',
-                    position: 'relative', 
-                  }}
-                >
-                  {page}
-                  {activePage === page && ( 
-                    <span
-                      style={{
-                        position: 'absolute',
-                        bottom: 0,
-                        left: 0,
-                        width: '100%',
-                        height: 2,
-                        backgroundColor: 'white',
-                        transition: 'width 0.3s', 
-                      }}
-                    />
-                  )}
-                </Button>
+                    key={page}
+                    onClick={() => handlePageClick(page)}
+                    sx={{
+                      my: 2,
+                      color: activePage === page ? 'white' : theme.primaryColor,
+                      display: 'block',
+                      textDecoration: 'none',
+                      position: 'relative',
+                    }}
+
+                  >
+                    {page}
+                    {activePage === page && (
+                      <span
+                        style={{
+                          position: 'absolute',
+                          bottom: 0,
+                          left: 0,
+                          width: '100%',
+                          height: 2,
+                          backgroundColor: 'white',
+                          transition: 'width 0.3s',
+                        }}
+                      />
+                    )}
+                  </Button>
                 ))}
               </Box>
             </Toolbar>

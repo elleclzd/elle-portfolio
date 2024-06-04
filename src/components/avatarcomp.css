@@ -1,0 +1,25 @@
+.avatar-title-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-title {
+    font-family: 'League Spartan';
+    font-size: 24px;
+    font-weight: 800;
+    color: #D8AE7E;
+}
+
+.avatar-subtitle {
+    font-family: 'League Spartan';
+    font-size: 15px;
+    font-weight: 500;
+    color: #000;
+}
+.avatar-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
